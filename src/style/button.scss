@@ -1,5 +1,9 @@
 @import './variables';
 
+button {
+    cursor: pointer;
+}
+
 .button {
     min-width: 101px;
     color: #fff;
@@ -9,7 +13,6 @@
     transition: 0.3s transform;
     border: none;
     background-color: transparent;
-    cursor: pointer;
     &__long {
         display: block;
         width: 170px;
