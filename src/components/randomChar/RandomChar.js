@@ -1,6 +1,6 @@
 import { Component } from 'react/cjs/react.production.min';
 import MarverService from '../../services/MarverService';
-import Spinner from '../spinner/Spinner'
+import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './randomChar.scss';
@@ -38,8 +38,16 @@ class RandomChar extends Component {
         });
     }
 
+    onCharLoading = () => {
+        this.setState({
+            loading: true,
+            error: false
+        })
+    }
+
     updateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+        this.onCharLoading();
         this.marverService
             .getCharacter(id)
             .then(this.onCharLoaded)
