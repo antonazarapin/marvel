@@ -90,14 +90,9 @@ class RandomChar extends Component {
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
 
-    const limitDescr = () => {
-        const setDescr = description ? description : `The server doesn't have a description for this character...`;
-        return !(setDescr.length > 186) ? setDescr : `${setDescr.slice(0, 186)}...`; 
-    }
-
     const thumbnailUpdate = () => {
         if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-            return (<img src={thumbnail} alt="Random character" style={{objectFit: 'contain'}} className="randomchar__img"/>)
+            return (<img src={thumbnail} alt="Random character" style={{objectFit: 'unset'}} className="randomchar__img"/>)
         } else {
             return (<img src={thumbnail} alt="Random character" className="randomchar__img"/>)
         }
@@ -109,7 +104,7 @@ const View = ({char}) => {
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr">
-                    {limitDescr()}
+                    {description}
                 </p>
                 <div className="randomchar__btns">
                     <a href={homepage} className="button button__main">
