@@ -91,4 +91,7 @@ button {
     &:hover {
         transform: translateY(-5px);
     }
+    &:disabled {
+        filter: grayscale(.7);
+    }
 }
