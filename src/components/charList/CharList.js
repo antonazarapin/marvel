@@ -1,9 +1,10 @@
+import { Component } from 'react/cjs/react.production.min';
+import PropTypes from 'prop-types';
+
 import './charList.scss';
 import MarverService from '../../services/MarverService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-
-import { Component } from 'react/cjs/react.production.min';
 
 class CharList extends Component {
     state = {
@@ -12,7 +13,8 @@ class CharList extends Component {
         error: false,
         newItemLoading: false,
         offset: 210,
-        charEnded: false
+        charEnded: false,
+        activeCharacter: null
     }
 
     marverService = new MarverService();
@@ -61,19 +63,27 @@ class CharList extends Component {
     renderItems(arr) {
 
         const items = arr.map(item => {
-            const thumbnailUpdate = () => {
-                if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-                    return (<img src={item.thumbnail} alt="abyss" style={{objectFit: 'unset'}}/>)
-                } else {
-                    return (<img src={item.thumbnail} alt="abyss"/>)
-                }
-            }
-    
+
             return (
-                <li className="char__item" 
-                    key={item.id}
-                    onClick={() => this.props.onCharSelected(item.id)}>
-                    {thumbnailUpdate()}
+                <li key={item.id}
+                    onClick={() => {
+                        this.props.onCharSelected(item.id)
+                        this.setState({
+                            activeCharacter: item.id
+                        })
+                    }}
+                    className={
+                        this.state.activeCharacter === item.id
+                            ? 'char__item char__item_selected'
+                            : 'char__item'
+                    }>
+                        <img src={item.thumbnail} 
+                             alt={item.name}
+                             style={
+                                item.thumbnail.indexOf('not_available') !== -1 
+                                    ? { objectFit: 'unset' } 
+                                    : { objectFit: 'cover' }
+                             }/>
                     <div className="char__name">{item.name}</div>
                 </li>
             )
@@ -113,6 +123,10 @@ class CharList extends Component {
             </div>
         )
     }
+}
+
+CharList.propTypes = {
+    onCharSelected: PropTypes.func.isRequired
 }
 
 
