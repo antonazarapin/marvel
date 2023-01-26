@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/antonazarapin/antonazarapin.github.io/static/css/main.5264ffc0.chunk.css",
-    "main.js": "/antonazarapin/antonazarapin.github.io/static/js/main.83accd40.chunk.js",
-    "main.js.map": "/antonazarapin/antonazarapin.github.io/static/js/main.83accd40.chunk.js.map",
-    "runtime-main.js": "/antonazarapin/antonazarapin.github.io/static/js/runtime-main.b76b5dec.js",
-    "runtime-main.js.map": "/antonazarapin/antonazarapin.github.io/static/js/runtime-main.b76b5dec.js.map",
-    "static/js/2.956be2e8.chunk.js": "/antonazarapin/antonazarapin.github.io/static/js/2.956be2e8.chunk.js",
-    "static/js/2.956be2e8.chunk.js.map": "/antonazarapin/antonazarapin.github.io/static/js/2.956be2e8.chunk.js.map",
-    "index.html": "/antonazarapin/antonazarapin.github.io/index.html",
-    "static/css/main.5264ffc0.chunk.css.map": "/antonazarapin/antonazarapin.github.io/static/css/main.5264ffc0.chunk.css.map",
-    "static/js/2.956be2e8.chunk.js.LICENSE.txt": "/antonazarapin/antonazarapin.github.io/static/js/2.956be2e8.chunk.js.LICENSE.txt",
-    "static/media/error.42292aa1.gif": "/antonazarapin/antonazarapin.github.io/static/media/error.42292aa1.gif",
-    "static/media/mjolnir.61f31e18.png": "/antonazarapin/antonazarapin.github.io/static/media/mjolnir.61f31e18.png",
-    "static/media/vision.067d4ae1.png": "/antonazarapin/antonazarapin.github.io/static/media/vision.067d4ae1.png"
+    "main.css": "/antonazarapin.github.io/static/css/main.5264ffc0.chunk.css",
+    "main.js": "/antonazarapin.github.io/static/js/main.83accd40.chunk.js",
+    "main.js.map": "/antonazarapin.github.io/static/js/main.83accd40.chunk.js.map",
+    "runtime-main.js": "/antonazarapin.github.io/static/js/runtime-main.7cedeb01.js",
+    "runtime-main.js.map": "/antonazarapin.github.io/static/js/runtime-main.7cedeb01.js.map",
+    "static/js/2.956be2e8.chunk.js": "/antonazarapin.github.io/static/js/2.956be2e8.chunk.js",
+    "static/js/2.956be2e8.chunk.js.map": "/antonazarapin.github.io/static/js/2.956be2e8.chunk.js.map",
+    "index.html": "/antonazarapin.github.io/index.html",
+    "static/css/main.5264ffc0.chunk.css.map": "/antonazarapin.github.io/static/css/main.5264ffc0.chunk.css.map",
+    "static/js/2.956be2e8.chunk.js.LICENSE.txt": "/antonazarapin.github.io/static/js/2.956be2e8.chunk.js.LICENSE.txt",
+    "static/media/error.42292aa1.gif": "/antonazarapin.github.io/static/media/error.42292aa1.gif",
+    "static/media/mjolnir.61f31e18.png": "/antonazarapin.github.io/static/media/mjolnir.61f31e18.png",
+    "static/media/vision.067d4ae1.png": "/antonazarapin.github.io/static/media/vision.067d4ae1.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b76b5dec.js",
+    "static/js/runtime-main.7cedeb01.js",
     "static/js/2.956be2e8.chunk.js",
     "static/css/main.5264ffc0.chunk.css",
     "static/js/main.83accd40.chunk.js"
