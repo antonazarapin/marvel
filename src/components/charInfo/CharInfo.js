@@ -1,4 +1,4 @@
-import { Component } from 'react/cjs/react.production.min';
+import {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import MarverService from '../../services/MarverService';
@@ -8,92 +8,67 @@ import Skeleton from '../skeleton/Skeleton'
 
 import './charInfo.scss';
 
-class CharInfo extends Component {
-    state = {
-        char: null,
-        loading: false,
-        error: false
+const CharInfo = (props) => {
+    const [char, setChar] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
+
+    const marverService = new MarverService();
+
+    useEffect(() => {
+        updateChar();
+    }, [props.charId])
+
+    const onCharLoaded = (char) => {
+        setChar(char);
+        setLoading(false);
     }
 
-    marverService = new MarverService();
-
-    componentDidMount() {
-        this.updateChar();
+    const onError = () => {
+        setLoading(false);
+        setError(true);
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.charId !== prevProps.charId) {
-            this.updateChar();
-        }
+    const onCharLoading = () => {
+        setLoading(true);
+        setError(false);
     }
 
-    updateChar = () => {
-        const {charId} = this.props;
+    const updateChar = () => {
+        const {charId} = props;
 
         if (!charId) {
             return;
         }
 
-        this.onCharLoading();
+        onCharLoading();
 
-        this.marverService
+        marverService
             .getCharacter(charId)
-                .then(this.onCharLoaded)
-                .catch(this.onError)
-    }
-
-    onCharLoaded = (char) => {
-        this.setState({
-            char,
-            loading: false
-        });
-    }
-
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true
-        });
-    }
-
-    onCharLoading = () => {
-        this.setState({
-            loading: true,
-            error: false
-        })
+                .then(onCharLoaded)
+                .catch(onError)
     }
 
 
 
-    render() {
-        const {char, loading, error} = this.state;
+    const skeleton = char || loading || error ? null : <Skeleton/>;
+    const errorMessage = error ? <ErrorMessage/> : null;
+    const spinner = loading ? <Spinner/> : null;
+    const content = !(loading || error || !char) ? <View char={char}/> : null;
 
-        const skeleton = char || loading || error ? null : <Skeleton/>;
-        const errorMessage = error ? <ErrorMessage/> : null;
-        const spinner = loading ? <Spinner/> : null;
-        const content = !(loading || error || !char) ? <View char={char}/> : null;
-
-        return (
-            <div className="char__info">
-                {skeleton}
-                {errorMessage}
-                {spinner}
-                {content}
-            </div>
-        )
-    }
+    return (
+        <div className="char__info">
+            {skeleton}
+            {errorMessage}
+            {spinner}
+            {content}
+        </div>
+    )
 }
 
 const View = ({char}) => {
     const {name, thumbnail, description, wiki, homepage, comics} = char;
-
-    const thumbnailUpdate = () => {
-        if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-            return (<img src={thumbnail} alt={name} style={{objectFit: 'unset'}}/>)
-        } else {
-            return (<img src={thumbnail} alt={name}/>)
-        }
-    }
 
     const comicsUpdate = () => {
         if (comics.length > 0) {
@@ -110,7 +85,13 @@ const View = ({char}) => {
     return (
         <>
             <div className="char__basics">
-                {thumbnailUpdate()}
+                <img src={thumbnail} 
+                             alt={name}
+                             style={
+                                thumbnail.indexOf('not_available') !== -1 
+                                    ? { objectFit: 'unset' } 
+                                    : { objectFit: 'cover' }
+                             }/>
                 <div>
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
